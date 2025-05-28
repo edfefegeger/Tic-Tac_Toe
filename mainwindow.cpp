@@ -30,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     loadScore();
     switchPlayerSymbol('X'); // по умолчанию
+    updateScoreDisplay();
     initializeGame();
 }
 
@@ -144,7 +145,15 @@ void MainWindow::updateTurnIndicator()
 {
     QString who = currentPlayer == Player::Human ? QString(humanSymbol) : QString(computerSymbol);
     ui->turnLabel->setText("Ход игрока: " + who);
+
+    QColor color = (currentPlayer == Player::Human) ? humanColor : computerColor;
+    QPalette palette = ui->turnLabel->palette();
+    palette.setColor(QPalette::Window, color.lighter(150));
+    palette.setColor(QPalette::WindowText, Qt::black);
+    ui->turnLabel->setAutoFillBackground(true);
+    ui->turnLabel->setPalette(palette);
 }
+
 
 void MainWindow::updateScoreDisplay()
 {
