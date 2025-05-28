@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include <QRandomGenerator>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -59,7 +60,7 @@ void MainWindow::handleCellClick(int row, int col)
     if (currentPlayer != Player::Human || !ui->gameTable->item(row, col)->text().isEmpty()) return;
 
     ui->gameTable->item(row, col)->setText(humanSymbol);
-    ui->gameTable->item(row, col)->setTextColor(humanColor);
+    ui->gameTable->item(row, col)->setForeground(QBrush(humanColor));
 
     if (checkWin(humanSymbol)) {
         endGame("Вы победили!");
@@ -83,10 +84,11 @@ void MainWindow::makeComputerMove()
                 emptyCells.append({r, c});
 
     if (!emptyCells.isEmpty()) {
-        auto move = emptyCells[qrand() % emptyCells.size()];
-        int r = move.first, c = move.second;
+        int index = QRandomGenerator::global()->bounded(emptyCells.size());
+        int r = emptyCells[index].first;
+        int c = emptyCells[index].second;
         ui->gameTable->item(r, c)->setText(computerSymbol);
-        ui->gameTable->item(r, c)->setTextColor(computerColor);
+        ui->gameTable->item(r, c)->setForeground(QBrush(computerColor));
 
         if (checkWin(computerSymbol)) {
             endGame("Компьютер победил!");
@@ -153,7 +155,6 @@ void MainWindow::updateTurnIndicator()
     ui->turnLabel->setAutoFillBackground(true);
     ui->turnLabel->setPalette(palette);
 }
-
 
 void MainWindow::updateScoreDisplay()
 {
