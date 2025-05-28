@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>549</width>
-    <height>301</height>
+    <width>500</width>
+    <height>305</height>
    </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>500</width>
+    <height>400</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Крестики-нолики 3x3</string>
@@ -73,17 +79,8 @@
      <item>
       <widget class="QLabel" name="scoreLabel">
        <property name="text">
-        <string>Счет: Игрок 0 : 0 Компьютер</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="chainLabel">
-       <property name="text">
-        <string>Цепочки: -</string>
+        <string>Счет: 
+ Игрок 0 : 0 Компьютер</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -98,7 +95,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>549</width>
+     <width>500</width>
      <height>23</height>
     </rect>
    </property>
